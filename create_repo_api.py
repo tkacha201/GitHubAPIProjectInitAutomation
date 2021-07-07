@@ -12,7 +12,7 @@ is_private = args.is_private
 API_URL = "https://api.github.com"
 
 
-#get username
+#gets username
 headers = {
     "Authorization": "token " + GITHUB_TOKEN,
     "Accept": "application/vnd.github.v3+json"
@@ -37,14 +37,13 @@ try:
 except requests.exceptions.RequestException as err:
     raise SystemExit(err)
 
+#makes readme.md with project name, commits and pushes to master
 try:
     os.chdir(REPO_PATH)
     os.system("mkdir " + repo_name)
     os.chdir(REPO_PATH + "\\" + repo_name)
     os.system("git init")
     os.system("git remote add origin "+ r"https://github.com/" +user_name+ r"/" + repo_name + ".git")
-   
-   #FIX THIS
     os.system("echo # " + repo_name + ">> README.md")
     sleep(2)
     os.system("git add .")
